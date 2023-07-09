@@ -4,13 +4,13 @@
 | Column              | Type     | Options                     |
 | ------------------- | -------- | --------------------------- |
 | email               | string   | null: false, unique:true    |
-| ecvrypted_password  | string   | null: false                 |
+| encrypted_password  | string   | null: false                 |
 | nick_name           | string   | null: false                 |
 | first_name          | string   | null: false                 |
 | last_name           | string   | null: false                 |
 | first_name_kana     | string   | null: false                 |
 | last_name_kana      | string   | null: false                 |
-| birthday            | data     | null: false                 |
+| birthday            | date     | null: false                 |
 
 ### Association
 
@@ -45,22 +45,21 @@
 | street              | string   | null:false                  |
 | buillding           | string   |                             |
 | phone               | string   | null:false                  |
-
+| orther              | string   | null:false,foreign_key:true |
 ### Association
 
-- belongs_to :orthers
-- belongs_to :user
+- belongs_to :orther
 
 
 ## orthersテーブル
 | Column              | Type     | Options                     |
 | ------------------- | -------- | --------------------------- |
-| user                |references| foreign_key:true            |
+| user                |references| null:false,foreign_key:true |
 | item                |references| null:false,foreign_key:true |
 | addresses           |references| null:false                  |
 
 ### Association
 
-- belongs_to :items
-- has_many :addresse
+- belongs_to :item
+- belongs_to :addresse
 - belongs_to :user
