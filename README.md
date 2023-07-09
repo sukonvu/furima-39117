@@ -15,8 +15,7 @@
 ### Association
 
 - has_many :items
-- has_many :addresses
-- has_many :orthers, through: :items
+- has_many :orthers
 
 ## itemsテーブル
 | Column              | Type     | Options                     |
@@ -34,8 +33,7 @@
 ### Association
 
 - belongs_to :user
-- belongs_to :addresse
-- belongs_to :orther
+- has_one :orther
 
 
 ## addressesテーブル
@@ -50,8 +48,7 @@
 
 ### Association
 
-- has_many :items
-- has_many :orthers
+- belongs_to :orthers
 - belongs_to :user
 
 
@@ -60,10 +57,10 @@
 | ------------------- | -------- | --------------------------- |
 | user                |references| foreign_key:true            |
 | item                |references| null:false,foreign_key:true |
-| addresses           |references| null:false,foreign_key:true |
+| addresses           |references| null:false                  |
 
 ### Association
 
-- has_many :items
-- belongs_to :addresse
+- belongs_to :items
+- has_many :addresse
 - belongs_to :user
