@@ -40,7 +40,7 @@
 | Column              | Type     | Options                     |
 | ------------------- | -------- | --------------------------- |
 | postal_code         | string   | null:false                  |
-| prefecture_id       | integer  | null:false,foreign_key:true |
+| prefecture_id       | integer  | null:false                  |
 | city                | string   | null:false                  |
 | street              | string   | null:false                  |
 | buillding           | string   |                             |
@@ -56,10 +56,9 @@
 | ------------------- | -------- | --------------------------- |
 | user                |references| null:false,foreign_key:true |
 | item                |references| null:false,foreign_key:true |
-| addresses           |references| null:false                  |
 
 ### Association
 
 - belongs_to :item
-- belongs_to :addresse
+- has_one :addresse
 - belongs_to :user
