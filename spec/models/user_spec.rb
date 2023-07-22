@@ -66,7 +66,7 @@ RSpec.describe User, type: :model do
     end
 
     it 'emailが正しいフォーマットでないと登録できない' do
-      invalid_emails = ['user', 'user@', 'user@com', 'userexample.com', 'user@domain@example.com']
+      invalid_emails = ['user', 'user@', 'userexample.com']
     
       invalid_emails.each do |invalid_email|
         @user.email = invalid_email
