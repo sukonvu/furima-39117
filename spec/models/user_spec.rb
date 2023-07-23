@@ -4,7 +4,15 @@ RSpec.describe User, type: :model do
     @user = FactoryBot.build(:user)
   end
 
-  describe 'ユーザー新規登録' do
+describe 'ユーザー新規登録' do
+  context '新規登録できるとき' do
+    it '正しい情報を入力すればユーザー新規登録ができる' do
+      expect(@user).to be_valid
+      end
+    end
+  end
+
+  context '新規登録できないとき' do
     it 'nicknameが空では登録できない' do
       @user.nick_name = ''
       @user.valid?
@@ -26,7 +34,7 @@ RSpec.describe User, type: :model do
     it 'password_confirmationが空では登録できない' do
       @user.password_confirmation = ''
       @user.valid?
-      expect(@user.errors.full_messages).to include("Password confirmation can't be blank")
+      expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
     end
 
     it 'first_nameが空では登録できない' do
@@ -91,6 +99,14 @@ RSpec.describe User, type: :model do
       end
     end
 
+    it 'passwordが全角文字を含む場合は登録できない' do
+      @user.password = '１２３Qwe'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Password is invalid")
+    end
+  end
+
+
     it 'passwordとpassword_confirmationが一致しないと登録できない' do
       @user.password_confirmation = '888888'
       @user.valid?
@@ -136,7 +152,4 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include("Last name kana is invalid")
       end
     end
-
-
   end
-end
