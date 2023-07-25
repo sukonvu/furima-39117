@@ -15,7 +15,7 @@
 ### Association
 
 - has_many :items
-- has_many :orthers
+- has_many :orders
 
 ## itemsテーブル
 | Column              | Type     | Options                     |
@@ -33,7 +33,7 @@
 ### Association
 
 - belongs_to :user
-- has_one :orther
+- has_one :order
 
 
 ## addressesテーブル
@@ -45,13 +45,13 @@
 | street              | string   | null:false                  |
 | buillding           | string   |                             |
 | phone               | string   | null:false                  |
-| orther              | string   | null:false,foreign_key:true |
+| order               | string   | null:false,foreign_key:true |
 ### Association
 
-- belongs_to :orther
+- belongs_to :order
 
 
-## orthersテーブル
+## ordersテーブル
 | Column              | Type     | Options                     |
 | ------------------- | -------- | --------------------------- |
 | user                |references| null:false,foreign_key:true |
