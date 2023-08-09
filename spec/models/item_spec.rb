@@ -26,15 +26,15 @@ RSpec.describe Item, type: :model do
       end
 
       it '商品画像がない場合は保存できない' do
-        @item.image = nil
+        @item.item_image = nil
         @item.valid?
-        expect(@item.errors.full_messages).to include("Image can't be blank")
+        expect(@item.errors.full_messages).to include("Item image can't be blank")
       end
 
       it '商品名がない場合は保存できない' do
-        @item.image = ''
+        @item.item_name = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("Image can't be blank")
+        expect(@item.errors.full_messages).to include("Item name can't be blank")
       end
 
      
@@ -51,9 +51,9 @@ RSpec.describe Item, type: :model do
     end
 
     it '商品画像のバリデーション' do
-      @item.image = nil
+      @item.item_image = nil
       @item.valid?
-      expect(@item.errors.full_messages).to include("Image can't be blank")
+      expect(@item.errors.full_messages).to include("Item image can't be blank")
     end
 
     it 'アイテム名のバリデーション' do
@@ -68,7 +68,29 @@ RSpec.describe Item, type: :model do
       expect(@item.errors.full_messages).to include("Description can't be blank")
     end
 
-    # 他のバリデーションのテストも同様に追加していく
+    it 'カテゴリーが選択されていない場合は保存できない' do
+      @item.category = nil
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Category can't be blank")
+    end
+
+    it '配送料の負担が選択されていない場合は保存できない' do
+      @item.delivery_charge = nil
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Delivery charge can't be blank")
+    end
+
+    it '発送元の地域が選択されていない場合は保存できない' do
+      @item.prefecture = nil
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Prefecture can't be blank")
+    end
+
+    it '発送までの日数が選択されていない場合は保存できない' do
+      @item.shipping_date = nil
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Shipping date can't be blank")
+    end
   end
 end
 
