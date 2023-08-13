@@ -11,10 +11,10 @@ before_action :authenticate_user!, only: [:new, :create]
   end
 
   def create
-    @item = current_user.items.build(item_params)
-    if @item.save
-      puts @item.errors.full_messages
-      redirect_to root_path
+    @item = Item.new(item_params)
+    if @item.valid?
+       @item.save
+       return redirect_to root_path
     else
       render :new
     end
@@ -46,6 +46,6 @@ before_action :authenticate_user!, only: [:new, :create]
   private
 
   def item_params
-    params.require(:item).permit(:item_image, :item_name, :description, :condition_id, :category_id, :delivery_charge_id, :prefecture_id, :shipping_date_id, :price )
+    params.require(:item).permit(:item_image, :item_name, :description, :condition_id, :category_id, :delivery_charge_id, :prefecture_id, :shipping_date_id, :price ).merge(user_id: current_user.id)
   end
 end

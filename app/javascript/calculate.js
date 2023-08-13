@@ -19,4 +19,5 @@ function calculateProfit() {
 document.addEventListener("DOMContentLoaded", function () {
   const priceInput = document.getElementById("item-price");
   priceInput.addEventListener("input", calculateProfit);
-});
+  });
+
