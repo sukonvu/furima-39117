@@ -10,7 +10,7 @@ class Item < ApplicationRecord
 
   validates :item_name, presence: true, length: { maximum: 40 }
   validates :description, presence: true, length: { maximum: 1000 }
-  validates :condition_id, presence: true, numericality: { other_than: 1, message: "can't be" }
+  validates :condition_id, presence: true, numericality: { other_than: 1, message: "can't be blank" }
   validates :category_id, presence: true, numericality: { other_than: 1, message: "can't be blank" }
   validates :delivery_charge_id, presence: true, numericality: { other_than: 1, message: "can't be blank" }
   validates :prefecture_id, presence: true, numericality: { other_than: 1, message: "can't be blank" }
