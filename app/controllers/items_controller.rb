@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
 before_action :authenticate_user!, only: [:new, :create]
 
   def index
-    # @items = Item.all
+    @items = Item.all
   end
 
   def new
@@ -20,9 +20,9 @@ before_action :authenticate_user!, only: [:new, :create]
     end
   end
 
-  # def show
-  #   @item = Item.find(params[:id])
-  # end
+  def show
+    @item = Item.find(params[:id])
+  end
 
   # def edit
   #   @item = Item.find(params[:id])

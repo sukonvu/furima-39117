@@ -3,6 +3,6 @@ Rails.application.routes.draw do
  root 'items#index'
  get '/items/new', to: 'items#new'
   
-  resources :items, only: [:index, :new, :create]
+  resources :items, only: [:index, :new, :create, :show]
 end
-# , :show, :edit, :update, :destroy(後に追加する)
+# :edit, :update, :destroy(後に追加する)
