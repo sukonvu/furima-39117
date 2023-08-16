@@ -37,15 +37,27 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Item name can't be blank")
       end
 
+      it '価格が空では出品できない' do
+        @item.price = ''
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price can't be blank")
+      end
+    
+      it '価格に半角数字以外が含まれている場合は出品できない' do
+        @item.price = "asd" 
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price is not a number")
+      end
+
      
     end
 
     it '価格のバリデーション' do
-      @item.price = 100
+      @item.price = 299 
       @item.valid?
       expect(@item.errors.full_messages).to include("Price must be greater than or equal to 300")
-
-      @item.price = 10000000
+    
+      @item.price = 10000000 
       @item.valid?
       expect(@item.errors.full_messages).to include("Price must be less than or equal to 9999999")
     end
@@ -69,7 +81,7 @@ RSpec.describe Item, type: :model do
     end
 
     it 'カテゴリーが選択されていない場合は保存できない' do
-      @item.category = nil
+      @item.category = Category.find_by(id: 1)
       @item.valid?
       expect(@item.errors.full_messages).to include("Category can't be blank")
     end
