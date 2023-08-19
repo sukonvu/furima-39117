@@ -1,7 +1,8 @@
 class ItemsController < ApplicationController
 
-before_action :authenticate_user!, only: [:new, :create, :edit]
-before_action :set_items, only: [:show, :edit, :update]
+before_action :authenticate_user!, only: [:new, :create, :edit, :destroy]
+before_action :set_items, only: [:show, :edit, :update, :destroy]
+before_action :correct_item,only: [:edit,:destroy]
 
   def index
     @items = Item.order(created_at: :desc)
@@ -26,9 +27,6 @@ before_action :set_items, only: [:show, :edit, :update]
   end
 
   def edit
-    unless @item.user == current_user
-      redirect_to items_path
-    end
   end
 
   def update
@@ -39,12 +37,18 @@ before_action :set_items, only: [:show, :edit, :update]
     end
   end
 
-  # def destroy
-  #   @item.destroy
-  #   redirect_to root_path
-  # end
+  def destroy
+    @item.destroy
+    redirect_to root_path
+  end
 
   private
+
+   def correct_item
+      unless @item.user.id == current_user.id
+      redirect_to items_path
+   end
+end
 
   def item_params
     params.require(:item).permit(:item_image, :item_name, :description, :condition_id, :category_id, :delivery_charge_id, :prefecture_id, :shipping_date_id, :price ).merge(user_id: current_user.id)
