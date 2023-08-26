@@ -19,7 +19,6 @@ RSpec.describe Order, type: :model do
     end
   
       context '商品購入情報を保存できないとき' do
-        before do
         @order_address = FactoryBot.build(:order_address, user_id: nil, item_id: nil)
         end
 
