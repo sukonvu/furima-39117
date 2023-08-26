@@ -25,7 +25,7 @@ before_action :set_items, only: [:show, :edit, :destroy]
   end
 
   def edit
-    redirect_to root_path unless (current_user.id == @item.user_id) && @item.order.present?
+    redirect_to root_path unless (current_user.id == @item.user_id) && @item.order.blank?
   end
 
   def update
