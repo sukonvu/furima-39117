@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
          has_many :items
+         has_many :orders
          
          validates :nick_name, length: { maximum: 40 }
          validates :nick_name, :last_name, :last_name_kana, :first_name, :first_name_kana, :birthday, presence: true

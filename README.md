@@ -48,10 +48,10 @@
 | orther              | string   | null:false,foreign_key:true |
 ### Association
 
-- belongs_to :orther
+- belongs_to :order
 
 
-## orthersテーブル
+## ordersテーブル
 | Column              | Type     | Options                     |
 | ------------------- | -------- | --------------------------- |
 | user                |references| null:false,foreign_key:true |

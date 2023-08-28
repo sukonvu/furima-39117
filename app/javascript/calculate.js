@@ -1,23 +1,13 @@
-function calculateProfit() {
+window.addEventListener('load', () => {
   const priceInput = document.getElementById("item-price");
-  const addTaxPrice = document.getElementById("add-tax-price");
-  const profit = document.getElementById("profit");
+  priceInput.addEventListener("input", () => {
 
-  const price = parseFloat(priceInput.value);
-  if (!isNaN(price)) {
-    const tax = Math.floor(price * 0.1);
-    const profitValue = price - tax;
+    taxprice = document.getElementById("add-tax-price");
+    taxprice.innerHTML = Math.floor(priceInput.value * 0.1 );
 
-    addTaxPrice.textContent = tax;
-    profit.textContent = profitValue;
-  } else {
-    addTaxPrice.textContent = "0";
-    profit.textContent = "0";
-  }
-}
+    profit = document.getElementById("profit");
+    profit.innerHTML = Math.floor(priceInput.value - Math.floor(priceInput.value * 0.1 ));
 
-document.addEventListener("DOMContentLoaded", function () {
-  const priceInput = document.getElementById("item-price");
-  priceInput.addEventListener("input", calculateProfit);
-  });
+  })
+});
 
